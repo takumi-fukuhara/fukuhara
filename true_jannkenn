@@ -191,7 +191,7 @@ namespace true_janken
                 seiseki.Add(name[i]);
                 seiseki.Add(win[i] + "勝" + (report.kaisuu - win[i]) + "敗");
                 seiseki.Add("勝率:" +syouritu );
-            }
+            }         //戦績をcsvファイルで出力するためのリスト作成
 
 
 
@@ -205,12 +205,12 @@ namespace true_janken
                     fileOutput.FileName = Console.ReadLine();
                 
                 
-                StreamWriter streamWriter = new StreamWriter(fileOutput.FileName+".text",false,Encoding.UTF8);
+                StreamWriter streamWriter = new StreamWriter( fileOutput.FileName + ".text",false,Encoding.UTF8);  //CSV形式でtextファイル
                 for (i = 0; i < 3*(class1.max + p.playmax); i+=3)
                 {
                     streamWriter.WriteLine(string.Format(seiseki[i] + "," + seiseki[i + 1] + "," + seiseki[i + 2]));
                 }
-                streamWriter.Close();
+                streamWriter.Close();       //名前と戦績を格納したリストの出力
 
             }
             else if(fileOutput.output == 'n')
