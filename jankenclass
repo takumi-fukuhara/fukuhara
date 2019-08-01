@@ -22,10 +22,4 @@ namespace jannkenn
             return win += 1;
         }   //勝った回数を記録するための関数
     }
-
-
-
-
-
-
-
+}
