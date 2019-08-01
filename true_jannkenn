@@ -235,7 +235,7 @@ namespace true_janken
             Console.ReadLine();
 
 
-        }a
+        }
 
     }
 }
