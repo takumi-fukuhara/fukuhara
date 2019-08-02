@@ -171,7 +171,7 @@ namespace true_janken
                 Console.WriteLine("これが成績だ!");
                 for (i = 0; i < class1.max + p.playmax; i++)
                 {
-                    double syouritu = ((win[i]) * 1.0000000) / report.kaisuu;
+                    double syouritu = win[i] / report.kaisuu;
                     Console.Write("|" + name[i] + ":");
                     Console.WriteLine(win[i] + "勝" + (report.kaisuu - win[i]) + "敗   勝率:" + syouritu + "|");
 
