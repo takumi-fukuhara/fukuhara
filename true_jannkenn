@@ -15,8 +15,8 @@ namespace true_janken
             List<string> result = new List<string>();   //グーチョキパー格納
             Class1 class1 = new Class1();
             Report report = new Report();               //戦績を出すためのクラス
-            List<int> win = new List<int>();            //勝ち数を記録するためのリスト
-            Player p = new Player();                    //何回勝負するかのクラス
+            List<double> win = new List<double>();            //勝ち数を記録するためのリスト
+            Player p = new Player();                  //何回勝負するかのクラス
             List<string> name = new List<string>();     //プレイヤーの名前を格納するリスト
 
 
@@ -177,48 +177,48 @@ namespace true_janken
 
                 }             //戦績の表示
 
-            
+
 
 
 
 
                 List<string> seiseki = new List<string>();
-            for (i = 0; i < class1.max + p.playmax; i++)
-            {
-                double syouritu = ((win[i]) * 1.0000000) / report.kaisuu;
-                seiseki.Add(name[i]);
-                seiseki.Add(win[i] + "勝" + (report.kaisuu - win[i]) + "敗");
-                seiseki.Add("勝率:" + syouritu);
-            }         //戦績をcsvファイルで出力するためのリスト作成
-
-
-
-            FileOutput fileOutput = new FileOutput();
-            Console.Write("ファイル出力しますか？  y:yes n:no  =>");
-            fileOutput.output = Console.ReadLine()[0];
-
-            if (fileOutput.output == 'y')
-            {
-                Console.Write("ファイル名を入力してください(拡張子不要)  =>");
-                fileOutput.FileName = Console.ReadLine();
-
-
-                StreamWriter streamWriter = new StreamWriter(fileOutput.FileName + ".text", false, Encoding.UTF8);  //CSV形式でtextファイル
-                for (i = 0; i < 3 * (class1.max + p.playmax); i += 3)
+                for (i = 0; i < class1.max + p.playmax; i++)
                 {
-                    streamWriter.WriteLine(string.Format(seiseki[i] + "," + seiseki[i + 1] + "," + seiseki[i + 2]));
-                }
-                streamWriter.Close();       //名前と戦績を格納したリストの出力
+                    double syouritu = win[i] / report.kaisuu;
+                    seiseki.Add(name[i]);
+                    seiseki.Add(win[i] + "勝" + (report.kaisuu - win[i]) + "敗");
+                    seiseki.Add("勝率:" + syouritu);
+                }         //戦績をcsvファイルで出力するためのリスト作成
 
-            }
-            else if (fileOutput.output == 'n')
-            {
-                Console.WriteLine("了解です。お疲れ様でした!");
-            }
-            else
-            {
-                Console.WriteLine("ちゃんと入力してね、バイバイ");
-            }
+
+
+                FileOutput fileOutput = new FileOutput();
+                Console.Write("ファイル出力しますか？  y:yes n:no  =>");
+                fileOutput.output = Console.ReadLine()[0];
+
+                if (fileOutput.output == 'y')
+                {
+                    Console.Write("ファイル名を入力してください(拡張子不要)  =>");
+                    fileOutput.FileName = Console.ReadLine();
+
+
+                    StreamWriter streamWriter = new StreamWriter(fileOutput.FileName + ".text", false, Encoding.UTF8);  //CSV形式でtextファイル
+                    for (i = 0; i < 3 * (class1.max + p.playmax); i += 3)
+                    {
+                        streamWriter.WriteLine(string.Format(seiseki[i] + "," + seiseki[i + 1] + "," + seiseki[i + 2]));
+                    }
+                    streamWriter.Close();       //名前と戦績を格納したリストの出力
+
+                }
+                else if (fileOutput.output == 'n')
+                {
+                    Console.WriteLine("了解です。お疲れ様でした!");
+                }
+                else
+                {
+                    Console.WriteLine("ちゃんと入力してね、バイバイ");
+                }
 
             }
 
@@ -229,7 +229,13 @@ namespace true_janken
             catch (System.FormatException)
             {
                 Console.WriteLine("入力エラーです!!");
-            }                 //予期せぬ値が入力された時の処理
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                Console.WriteLine("入力エラーです!!");
+
+            }
+            //予期せぬ値が入力された時の処理
 
 
             Console.ReadLine();
