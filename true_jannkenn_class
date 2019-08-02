@@ -75,7 +75,7 @@ namespace true_janken
 
     class Report
     {
-        public int kaisuu;             //戦績を出すためのじゃんけんの試行回数
+        public double kaisuu;             //戦績を出すためのじゃんけんの試行回数
         public int winnum=0;
     }       //成績を出すための勝ち数判定
 
