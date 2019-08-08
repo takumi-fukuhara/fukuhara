@@ -1,0 +1,7 @@
+C:\Users\takumi.fukuhara\source\repos\true_janken\true_janken\bin\Debug\true_janken.exe.config
+C:\Users\takumi.fukuhara\source\repos\true_janken\true_janken\bin\Debug\true_janken.exe
+C:\Users\takumi.fukuhara\source\repos\true_janken\true_janken\bin\Debug\true_janken.pdb
+C:\Users\takumi.fukuhara\source\repos\true_janken\true_janken\obj\Debug\true_janken.csprojAssemblyReference.cache
+C:\Users\takumi.fukuhara\source\repos\true_janken\true_janken\obj\Debug\true_janken.csproj.CoreCompileInputs.cache
+C:\Users\takumi.fukuhara\source\repos\true_janken\true_janken\obj\Debug\true_janken.exe
+C:\Users\takumi.fukuhara\source\repos\true_janken\true_janken\obj\Debug\true_janken.pdb
