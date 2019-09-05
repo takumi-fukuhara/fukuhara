@@ -1,0 +1,56 @@
+﻿@model Shohinkanri.Models.STOCK
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>削除画面</h2>
+
+<h3>本当に消しちゃっていいんですかい？？</h3>
+<div>
+    <h4>STOCK</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRICE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QUANTITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUANTITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TOTAL_AMOUNT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTAL_AMOUNT)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="削除" class="btn btn-default" /> |
+            @Html.ActionLink("商品在庫画面へ", "Index")
+        </div>
+    }
+</div>

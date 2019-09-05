@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="shohinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SHOHIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="PRICE" Type="int" />
+        </EntityType>
+        <EntityType Name="STOCK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRICE" Type="int" />
+          <Property Name="QUANTITY" Type="int" />
+          <Property Name="TOTAL_AMOUNT" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="Update_Date" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="shohinModelStoreContainer">
+          <EntitySet Name="SHOHIN" EntityType="Self.SHOHIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STOCK" EntityType="Self.STOCK" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="shohinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SHOHIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PRICE" Type="Int32" />
+          <NavigationProperty Name="STOCK" Relationship="shohinModel.FK_STOCK_SHOHIN" FromRole="SHOHIN" ToRole="STOCK" />
+        </EntityType>
+        <EntityType Name="STOCK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE" Type="Int32" />
+          <Property Name="QUANTITY" Type="Int32" />
+          <Property Name="TOTAL_AMOUNT" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="SHOHIN" Relationship="shohinModel.FK_STOCK_SHOHIN" FromRole="STOCK" ToRole="SHOHIN" />
+          <Property Name="Update_Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="shohinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SHOHIN" EntityType="Self.SHOHIN" />
+          <EntitySet Name="STOCK" EntityType="Self.STOCK" />
+          <AssociationSet Name="FK_STOCK_SHOHIN" Association="shohinModel.FK_STOCK_SHOHIN">
+            <End Role="SHOHIN" EntitySet="SHOHIN" />
+            <End Role="STOCK" EntitySet="STOCK" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_STOCK_SHOHIN">
+          <End Type="shohinModel.SHOHIN" Role="SHOHIN" Multiplicity="1" />
+          <End Type="shohinModel.STOCK" Role="STOCK" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SHOHIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="STOCK">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="shohinModelStoreContainer" CdmEntityContainer="shohinEntities">
+          <EntitySetMapping Name="SHOHIN">
+            <EntityTypeMapping TypeName="shohinModel.SHOHIN">
+              <MappingFragment StoreEntitySet="SHOHIN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOCK">
+            <EntityTypeMapping TypeName="shohinModel.STOCK">
+              <MappingFragment StoreEntitySet="STOCK">
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="TOTAL_AMOUNT" ColumnName="TOTAL_AMOUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
